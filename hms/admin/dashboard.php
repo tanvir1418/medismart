@@ -29,6 +29,8 @@ check_login();
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-5.css" id="skin_color" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
 
 </head>
 
@@ -65,17 +67,19 @@ check_login();
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/manage-user.png" alt="User Info" width="48"
+                                                height="48">
+                                        </span>
                                         <h2 class="StepTitle">Manage Users</h2>
 
                                         <p class="links cl-effect-1">
                                             <a href="manage-users.php">
-                                                <?php $result = mysqli_query($con,"SELECT * FROM users ");
-$num_rows = mysqli_num_rows($result);
-{
-?>
+                                                <?php 
+                                                    $result = mysqli_query($con,"SELECT * FROM users ");
+                                                    $num_rows = mysqli_num_rows($result);
+                                                    {
+                                                ?>
                                                 Total Users :<?php echo htmlentities($num_rows);  } ?>
                                             </a>
                                         </p>
@@ -85,17 +89,18 @@ $num_rows = mysqli_num_rows($result);
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/doctors.png" alt="Doctors Info" width="48"
+                                                height="48">
+                                        </span>
                                         <h2 class="StepTitle">Manage Doctors</h2>
 
                                         <p class="cl-effect-1">
                                             <a href="manage-doctors.php">
                                                 <?php $result1 = mysqli_query($con,"SELECT * FROM doctors ");
-$num_rows1 = mysqli_num_rows($result1);
-{
-?>
+                                                    $num_rows1 = mysqli_num_rows($result1);
+                                                    {
+                                                ?>
                                                 Total Doctors :<?php echo htmlentities($num_rows1);  } ?>
                                             </a>
 
@@ -106,18 +111,19 @@ $num_rows1 = mysqli_num_rows($result1);
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/appointment.png" alt="Appointment" width="48"
+                                                height="48">
+                                        </span>
                                         <h2 class="StepTitle"> Appointments</h2>
 
                                         <p class="links cl-effect-1">
                                             <a href="book-appointment.php">
                                                 <a href="appointment-history.php">
                                                     <?php $sql= mysqli_query($con,"SELECT * FROM appointment");
-$num_rows2 = mysqli_num_rows($sql);
-{
-?>
+                                                        $num_rows2 = mysqli_num_rows($sql);
+                                                        {
+                                                    ?>
                                                     Total Appointments :<?php echo htmlentities($num_rows2);  } ?>
                                                 </a>
                                             </a>
@@ -129,19 +135,20 @@ $num_rows2 = mysqli_num_rows($sql);
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/patient-icon.png" alt="Patient Info" width="48"
+                                                height="48">
+                                        </span>
                                         <h2 class="StepTitle">Manage Patients</h2>
 
                                         <p class="links cl-effect-1">
                                             <a href="manage-patient.php">
                                                 <?php $result = mysqli_query($con,"SELECT * FROM tblpatient ");
-$num_rows = mysqli_num_rows($result);
-{
-?>
+                                                    $num_rows = mysqli_num_rows($result);
+                                                    {
+                                                ?>
                                                 Total Patients :<?php echo htmlentities($num_rows);  
-} ?>
+                                                } ?>
                                             </a>
                                         </p>
                                     </div>
@@ -155,17 +162,19 @@ $num_rows = mysqli_num_rows($result);
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i
-                                                class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/contant-us.png" alt="Contant US" width="48"
+                                                height="48">
+                                        </span>
                                         <h2 class="StepTitle"> New Queries</h2>
 
                                         <p class="links cl-effect-1">
                                             <a href="book-appointment.php">
                                                 <a href="unread-queries.php">
                                                     <?php 
-$sql= mysqli_query($con,"SELECT * FROM tblcontactus where  IsRead is null");
-$num_rows22 = mysqli_num_rows($sql);
-?>
+                                                        $sql= mysqli_query($con,"SELECT * FROM tblcontactus where  IsRead is null");
+                                                        $num_rows22 = mysqli_num_rows($sql);
+                                                    ?>
                                                     Total New Queries :<?php echo htmlentities($num_rows22);   ?>
                                                 </a>
                                             </a>

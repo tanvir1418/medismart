@@ -65,9 +65,10 @@ check_login();
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/user-profile.png" alt="Profile" width="48"
+                                                height="48">
+                                        </span>
                                         <h2 class="StepTitle">My Profile</h2>
 
                                         <p class="links cl-effect-1">
@@ -81,9 +82,10 @@ check_login();
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/my-appointment.png" alt="My Appointment"
+                                                width="48" height="48">
+                                        </span>
                                         <h2 class="StepTitle">My Appointments</h2>
 
                                         <p class="cl-effect-1">
@@ -97,9 +99,10 @@ check_login();
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <img src="./assets/images/book-appointment.png" alt="Book Appointment"
+                                                width="48" height="48">
+                                        </span>
                                         <h2 class="StepTitle"> Book My Appointment</h2>
 
                                         <p class="links cl-effect-1">

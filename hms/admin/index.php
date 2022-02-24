@@ -87,7 +87,7 @@
                             </div>
                             <div class="form-actions">
 
-                                <button type="submit" class="btn btn-primary pull-right" name="submit">
+                                <button type="submit" class="btn btn-lg btn-primary pull-right" name="submit">
                                     Login <i class="fa fa-arrow-circle-right"></i>
                                 </button>
                             </div>

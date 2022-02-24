@@ -4,14 +4,16 @@
     <div class="navbar-header">
         <a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" class="btn btn-navbar sidebar-toggle"
             data-toggle-class="app-slide-off" data-toggle-target="#app" data-toggle-click-outside="#sidebar">
-            <i class="ti-align-justify"></i>
+            <img src="../assets/images/menu.png" alt="Menu" width="32" height="32"
+                style="background-color: white; border-radius: 5px;">
         </a>
         <a class="navbar-brand" href="#">
             <h2 style="padding-top:10%; color: white; ">MediSmart</h2>
         </a>
         <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed"
             data-toggle-target="#app">
-            <i class="ti-align-justify"></i>
+            <img src="../assets/images/menu.png" alt="Menu" width="32" height="32"
+                style="background-color: white; border-radius: 5px;">
         </a>
         <a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" data-toggle="collapse"
             href=".navbar-collapse">
