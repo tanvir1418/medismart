@@ -51,6 +51,12 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-5.css" id="skin_color" />
+    <style>
+    .field-icon {
+        left: 94% !important;
+        font-size: 18px;
+    }
+    </style>
 </head>
 
 <body class="login">
@@ -81,8 +87,11 @@
                             </div>
                             <div class="form-group form-actions">
                                 <span class="input-icon">
-                                    <input type="password" class="form-control password" name="password"
-                                        placeholder="Password"><i class="fa fa-lock"></i>
+                                    <input id="password-field" type="password" class="form-control password"
+                                        name="password" placeholder="Password">
+                                    <i class="fa fa-lock"></i>
+                                    <span toggle="#password-field"
+                                        class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </span>
                             </div>
                             <div class="form-actions">
@@ -121,6 +130,15 @@
     jQuery(document).ready(function() {
         Main.init();
         Login.init();
+    });
+    $(".toggle-password").click(function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
     });
     </script>
 

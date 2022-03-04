@@ -1,27 +1,25 @@
 <?php
-session_start();
-error_reporting(0);
-include('include/config.php');
-include('include/checklogin.php');
-check_login();
+    session_start();
+    error_reporting(0);
+    include('include/config.php');
+    include('include/checklogin.php');
+    check_login();
 
-if(isset($_POST['submit']))
-{	
-	$docid=$_SESSION['id'];
-	$patname=$_POST['patname'];
-$patcontact=$_POST['patcontact'];
-$patemail=$_POST['patemail'];
-$gender=$_POST['gender'];
-$pataddress=$_POST['pataddress'];
-$patage=$_POST['patage'];
-$medhis=$_POST['medhis'];
-$sql=mysqli_query($con,"insert into tblpatient(Docid,PatientName,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patname','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
-if($sql)
-{
-echo "<script>alert('Patient info added Successfully');</script>";
-header('location:add-patient.php');
-
-}
+    if(isset($_POST['submit']))
+    {	
+        $docid=$_SESSION['id'];
+        $patname=$_POST['patname'];
+        $patcontact=$_POST['patcontact'];
+        $patemail=$_POST['patemail'];
+        $gender=$_POST['gender'];
+        $pataddress=$_POST['pataddress'];
+        $patage=$_POST['patage'];
+        $medhis=$_POST['medhis'];
+        $sql=mysqli_query($con,"insert into tblpatient(Docid,PatientName,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patname','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
+    if($sql){
+        echo "<script>alert('Patient info added Successfully');</script>";
+        header('location:add-patient.php');
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -121,7 +119,10 @@ header('location:add-patient.php');
                                                         </label>
                                                         <input type="email" id="patemail" name="patemail"
                                                             class="form-control" placeholder="Enter Patient Email id"
-                                                            required="true" onBlur="userAvailability()">
+                                                            required="true">
+                                                        <!-- <input type="email" id="patemail" name="patemail"
+                                                            class="form-control" placeholder="Enter Patient Email id"
+                                                            required="true" onBlur="userAvailability()"> -->
                                                         <span id="user-availability-status1"
                                                             style="font-size:12px;"></span>
                                                     </div>
