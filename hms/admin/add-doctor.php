@@ -1,26 +1,27 @@
 <?php
-session_start();
-error_reporting(0);
-include('include/config.php');
-include('include/checklogin.php');
-check_login();
+    session_start();
+    error_reporting(0);
+    include('include/config.php');
+    include('include/checklogin.php');
+    check_login();
 
-if(isset($_POST['submit']))
-{	$docspecialization=$_POST['Doctorspecialization'];
-$docname=$_POST['docname'];
-$docaddress=$_POST['clinicaddress'];
-$docfees=$_POST['docfees'];
-$doccontactno=$_POST['doccontact'];
-$docemail=$_POST['docemail'];
-$password=md5($_POST['npass']);
-$sql=mysqli_query($con,"insert into doctors(specilization,doctorName,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$docemail','$password')");
-if($sql)
-{
-echo "<script>alert('Doctor info added Successfully');</script>";
-echo "<script>window.location.href ='manage-doctors.php'</script>";
+    if(isset($_POST['submit'])){	
+        $docspecialization=$_POST['Doctorspecialization'];
+        $docname=$_POST['docname'];
+        $docdegree=$_POST['docdegree'];
+        $docaddress=$_POST['clinicaddress'];
+        $docfees=$_POST['docfees'];
+        $doccontactno=$_POST['doccontact'];
+        $docemail=$_POST['docemail'];
+        $password=md5($_POST['npass']);
 
-}
-}
+        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,docdegree,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docdegree','$docaddress','$docfees','$doccontactno','$docemail','$password')");
+
+        if($sql){
+            echo "<script>alert('Doctor info added Successfully');</script>";
+            echo "<script>window.location.href ='manage-doctors.php'</script>";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,10 +123,10 @@ echo "<script>window.location.href ='manage-doctors.php'</script>";
                                                         <select name="Doctorspecialization" class="form-control"
                                                             required="true">
                                                             <option value="">Select Specialization</option>
-                                                            <?php $ret=mysqli_query($con,"select * from doctorspecilization");
-while($row=mysqli_fetch_array($ret))
-{
-?>
+                                                            <?php 
+                                                                $ret=mysqli_query($con,"select * from doctorspecilization");
+                                                                while($row=mysqli_fetch_array($ret)){
+                                                            ?>
                                                             <option
                                                                 value="<?php echo htmlentities($row['specilization']);?>">
                                                                 <?php echo htmlentities($row['specilization']);?>
@@ -143,6 +144,13 @@ while($row=mysqli_fetch_array($ret))
                                                             placeholder="Enter Doctor Name" required="true">
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label for="doctordegree">
+                                                            Doctor Degree
+                                                        </label>
+                                                        <input type="text" name="docdegree" class="form-control"
+                                                            placeholder="Enter Doctor Degree" required="true">
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="address">
@@ -177,9 +185,6 @@ while($row=mysqli_fetch_array($ret))
                                                             required="true" onBlur="checkemailAvailability()">
                                                         <span id="email-availability-status"></span>
                                                     </div>
-
-
-
 
                                                     <div class="form-group">
                                                         <label for="exampleInputPassword1">
