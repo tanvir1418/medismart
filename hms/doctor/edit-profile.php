@@ -11,9 +11,11 @@
 		$docdegree=$_POST['docdegree'];
 		$docaddress=$_POST['clinicaddress'];
 		$docfees=$_POST['docfees'];
+        $practicedays=$_POST['practicedays'];
+        $practicetime=$_POST['practicetime'];
 		$doccontactno=$_POST['doccontact'];
 		$docemail=$_POST['docemail'];
-		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docdegree='$docdegree',address='$docaddress',docFees='$docfees',contactno='$doccontactno' where id='".$_SESSION['id']."'");
+		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$$practicetime',contactno='$doccontactno' where id='".$_SESSION['id']."'");
 		
 		if($sql){
 			echo "<script>alert('Doctor Details updated Successfully');</script>";
@@ -151,6 +153,52 @@
                                                             required="required"
                                                             value="<?php echo htmlentities($data['docFees']);?>">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="practicedays">
+                                                            Doctor Practice days
+                                                        </label>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input type="radio" name="selectdays"
+                                                                    value="Saturday - Thursday"
+                                                                    class="docdays__radio" />
+                                                                Sat - Thu
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input name="selectdays" type="radio" value="Friday"
+                                                                    class="docdays__radio" />
+                                                                Fri
+                                                            </label>
+                                                        </div>
+                                                        <input type="text" name="practicedays" class="form-control"
+                                                            id="docdays__input" required="required"
+                                                            value="<?php echo htmlentities($data['practicedays']);?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="practicetime">
+                                                            Doctor Practice Time
+                                                        </label>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="2pm - 5pm"
+                                                                    class="doctime__radio" />
+                                                                2pm - 5pm
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="6pm - 9pm"
+                                                                    class="doctime__radio" />
+                                                                6pm - 9pm
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="10pm - 1am"
+                                                                    class="doctime__radio" />
+                                                                10pm - 1am
+                                                            </label>
+                                                        </div>
+                                                        <input type="text" name="practicetime" class="form-control"
+                                                            required="required" id="doctime__input"
+                                                            value="<?php echo htmlentities($data['practicetime']);?>">
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="fess">
@@ -220,6 +268,22 @@
         jQuery(document).ready(function() {
             Main.init();
             FormElements.init();
+
+            // checkbox select
+            $("input[type=radio].doctime__radio").click(function() {
+                $("#doctime__input").val(this.value);
+            });
+
+            //init
+            // $("input[type=radio].doctime__radio:checked").click();
+
+            // checkbox select
+            $("input[type=radio].docdays__radio").click(function() {
+                $("#docdays__input").val(this.value);
+            });
+
+            //init
+            // $("input[type=radio].docdays__radio:checked").click();
         });
         </script>
         <!-- end: JavaScript Event Handlers for this page -->

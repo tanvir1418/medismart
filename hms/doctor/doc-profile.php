@@ -122,6 +122,22 @@
                                                             readonly="readonly"
                                                             value="<?php echo htmlentities($data['docFees']);?>">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="practicedays">
+                                                            Doctor Practice days
+                                                        </label>
+                                                        <input type="text" name="practicedays" class="form-control"
+                                                            readonly="readonly"
+                                                            value="<?php echo htmlentities($data['practicedays']);?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="practicetime">
+                                                            Doctor Practice Time
+                                                        </label>
+                                                        <input type="text" name="practicetime" class="form-control"
+                                                            readonly="readonly"
+                                                            value="<?php echo htmlentities($data['practicetime']);?>">
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="fess">

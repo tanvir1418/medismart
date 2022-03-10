@@ -11,11 +11,13 @@
         $docdegree=$_POST['docdegree'];
         $docaddress=$_POST['clinicaddress'];
         $docfees=$_POST['docfees'];
+        $practicedays=$_POST['practicedays'];
+        $practicetime=$_POST['practicetime'];
         $doccontactno=$_POST['doccontact'];
         $docemail=$_POST['docemail'];
         $password=md5($_POST['npass']);
 
-        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,docdegree,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docdegree','$docaddress','$docfees','$doccontactno','$docemail','$password')");
+        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,docdegree,address,docFees,practicedays,practicetime,contactno,docEmail,password) values('$docspecialization','$docname','$docdegree','$docaddress','$docfees','$practicedays','$practicetime','$doccontactno','$docemail','$password')");
 
         if($sql){
             echo "<script>alert('Doctor info added Successfully');</script>";
@@ -167,6 +169,53 @@
                                                         <input type="text" name="docfees" class="form-control"
                                                             placeholder="Enter Doctor Consultancy Fees" required="true">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="practicedays">
+                                                            Doctor Practice Days
+                                                        </label>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input type="radio" name="selectdays"
+                                                                    value="Saturday - Thursday" class="docdays__radio"
+                                                                    checked="checked" />
+                                                                Sat - Thu
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input name="selectdays" type="radio" value="Friday"
+                                                                    class="docdays__radio" />
+                                                                Fri
+                                                            </label>
+                                                        </div>
+                                                        <input name="practicedays" type="text" value=""
+                                                            id="docdays__input" class="form-control"
+                                                            placeholder="Enter Doctor Practice Days" required="true" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="practicetime">
+                                                            Doctor Practice Time
+                                                        </label>
+                                                        <br>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="2pm - 5pm"
+                                                                    class="doctime__radio" checked="checked" />
+                                                                2pm - 5pm
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="6pm - 9pm"
+                                                                    class="doctime__radio" />
+                                                                6pm - 9pm
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="10pm - 1am"
+                                                                    class="doctime__radio" />
+                                                                10pm - 1am
+                                                            </label>
+                                                        </div>
+                                                        <input name="practicetime" type="text" value=""
+                                                            id="doctime__input" class="form-control"
+                                                            placeholder="Enter Doctor Practice Time" required="true" />
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="fess">
@@ -201,8 +250,6 @@
                                                         <input type="password" name="cfpass" class="form-control"
                                                             placeholder="Confirm Password" required="required">
                                                     </div>
-
-
 
                                                     <button type="submit" name="submit" id="submit"
                                                         class="btn btn-o btn-primary">
@@ -272,6 +319,22 @@
     jQuery(document).ready(function() {
         Main.init();
         FormElements.init();
+
+        // checkbox select
+        $("input[type=radio].doctime__radio").click(function() {
+            $("#doctime__input").val(this.value);
+        });
+
+        //init
+        $("input[type=radio].doctime__radio:checked").click();
+
+        // checkbox select
+        $("input[type=radio].docdays__radio").click(function() {
+            $("#docdays__input").val(this.value);
+        });
+
+        //init
+        $("input[type=radio].docdays__radio:checked").click();
     });
     </script>
     <!-- end: JavaScript Event Handlers for this page -->

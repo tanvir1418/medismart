@@ -119,8 +119,6 @@
                                                     <?php echo htmlentities($_SESSION['msg1']="");?></p>
                                                 <form role="form" name="book" method="post">
 
-
-
                                                     <div class="form-group">
                                                         <label for="DoctorSpecialization">
                                                             Doctor Specialization
@@ -128,10 +126,10 @@
                                                         <select name="Doctorspecialization" class="form-control"
                                                             onChange="getdoctor(this.value);" required="required">
                                                             <option value="">Select Specialization</option>
-                                                            <?php $ret=mysqli_query($con,"select * from doctorspecilization");
-while($row=mysqli_fetch_array($ret))
-{
-?>
+                                                            <?php 
+                                                                $ret=mysqli_query($con,"select * from doctorspecilization");
+                                                                while($row=mysqli_fetch_array($ret)){
+                                                            ?>
                                                             <option
                                                                 value="<?php echo htmlentities($row['specilization']);?>">
                                                                 <?php echo htmlentities($row['specilization']);?>
@@ -140,9 +138,6 @@ while($row=mysqli_fetch_array($ret))
 
                                                         </select>
                                                     </div>
-
-
-
 
                                                     <div class="form-group">
                                                         <label for="doctor">
@@ -154,16 +149,11 @@ while($row=mysqli_fetch_array($ret))
                                                         </select>
                                                     </div>
 
-
-
-
-
                                                     <div class="form-group">
                                                         <label for="consultancyfees">
                                                             Consultancy Fees
                                                         </label>
                                                         <select name="fees" class="form-control" id="fees" readonly>
-
                                                         </select>
                                                     </div>
 
@@ -173,17 +163,31 @@ while($row=mysqli_fetch_array($ret))
                                                         </label>
                                                         <input class="form-control datepicker" name="appdate"
                                                             required="required" data-date-format="yyyy-mm-dd">
-
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label for="Appointmenttime">
-
                                                             Time
-
                                                         </label>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="2pm - 5pm"
+                                                                    class="doctime__radio" checked="checked" />
+                                                                2pm - 5pm
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="6pm - 9pm"
+                                                                    class="doctime__radio" />
+                                                                6pm - 9pm
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="selecttime" value="10pm - 1am"
+                                                                    class="doctime__radio" />
+                                                                10pm - 1am
+                                                            </label>
+                                                        </div>
                                                         <input class="form-control" name="apptime" id="timepicker1"
-                                                            required="required">eg : 10:00 PM
+                                                            required="required" readonly>
                                                     </div>
 
                                                     <button type="submit" name="submit" class="btn btn-o btn-primary">
@@ -199,26 +203,14 @@ while($row=mysqli_fetch_array($ret))
 
                         </div>
                     </div>
-
-                    <!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
-                    <!-- end: SELECT BOXES -->
-
                 </div>
             </div>
         </div>
         <!-- start: FOOTER -->
         <?php include('include/footer.php');?>
         <!-- end: FOOTER -->
-
         <!-- start: SETTINGS -->
         <?php include('include/setting.php');?>
-
         <!-- end: SETTINGS -->
     </div>
     <!-- start: MAIN JAVASCRIPTS -->
@@ -253,9 +245,16 @@ while($row=mysqli_fetch_array($ret))
         format: 'yyyy-mm-dd',
         startDate: '-3d'
     });
+    // checkbox select
+    $("input[type=radio].doctime__radio").click(function() {
+        $("#timepicker1").val(this.value);
+    });
+
+    //init
+    $("input[type=radio].doctime__radio:checked").click();
     </script>
     <script type="text/javascript">
-    $('#timepicker1').timepicker();
+    // $('#timepicker1').timepicker();
     </script>
     <!-- end: JavaScript Event Handlers for this page -->
     <!-- end: CLIP-TWO JAVASCRIPTS -->

@@ -214,6 +214,9 @@ body {
 .content-grids {
   background: #3391e7;
   padding: 10px 0px;
+  margin-top: -20px;
+  position: relative;
+  z-index: 10;
 }
 /*  GRID OF THREE   ============================================================================= */
 .section {
