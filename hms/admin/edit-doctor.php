@@ -47,6 +47,22 @@
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-5.css" id="skin_color" />
 
+    <script>
+    function checkContact() {
+        // doc_contact
+        var contact = jQuery("#doc_contact").val();
+        var validBdPhoneNoRegex = /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/;
+        var mobileRegexTest = validBdPhoneNoRegex.test(contact);
+        if (contact == "" || !mobileRegexTest) {
+            jQuery("#contact-status").html(
+                "Please enter valid contact (Ex. +8801xxxxxxxxx, 01xxxxxxxxx)"
+            );
+        } else {
+            jQuery("#contact-status").html("");
+        }
+    }
+    </script>
+
 
 </head>
 
@@ -210,9 +226,11 @@
                                                         <label for="fess">
                                                             Doctor Contact no
                                                         </label>
-                                                        <input type="text" name="doccontact" class="form-control"
-                                                            required="required"
+                                                        <input type="text" id="doc_contact" name="doccontact"
+                                                            class="form-control" required="required"
+                                                            onBlur="checkContact()"
                                                             value="<?php echo htmlentities($data['contactno']);?>">
+                                                        <span id="contact-status"></span>
                                                     </div>
 
                                                     <div class="form-group">

@@ -60,6 +60,23 @@
         });
     }
     </script>
+
+    <script>
+    function checkContact() {
+        // doc_contact
+        var contact = jQuery("#patient_contact").val();
+        var validBdPhoneNoRegex = /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/;
+        var mobileRegexTest = validBdPhoneNoRegex.test(contact);
+        if (contact == "" || !mobileRegexTest) {
+            jQuery("#contact-status").html(
+                "Please enter valid contact (Ex. +8801xxxxxxxxx, 01xxxxxxxxx)"
+            );
+        } else {
+            jQuery("#contact-status").html("");
+        }
+    }
+    </script>
+
 </head>
 
 <body>
@@ -109,9 +126,11 @@
                                                         <label for="fess">
                                                             Patient Contact no
                                                         </label>
-                                                        <input type="text" name="patcontact" class="form-control"
-                                                            placeholder="Enter Patient Contact no" required="true"
-                                                            maxlength="13" pattern="[0-9]+">
+                                                        <input type="text" id="patient_contact" name="patcontact"
+                                                            class="form-control" placeholder="Enter Patient Contact no"
+                                                            required="true" onBlur="checkContact()" maxlength="13"
+                                                            pattern="[0-9]+">
+                                                        <span id="contact-status"></span>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="fess">
