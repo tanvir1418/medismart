@@ -106,18 +106,15 @@
                             ?>
 
                             <div class="Item">
-                                <a href="https://www.shore.co.uk/index.php/ripcurl-corp-tee-black.html"
-                                    class="Item__link">
-                                    <div class="ImageContainer">
-                                        <img src="./images/doctor-placeholder.png" alt="Demo Doctor" class="Image">
-                                    </div>
-                                    <div class="Item__title"><?php echo $row['doctorName'];?></div>
-                                    <div class="Item__specialty">Specialities: <?php echo $row['specilization'];?>
-                                    </div>
-                                    <div class="Item__practice">Practice Days :
-                                        Saturday , Monday , Wednesday , Friday</div>
-                                    <div class="Item__branch"><?php echo $row['address'];?></div>
-                                </a>
+                                <div class="ImageContainer">
+                                    <img src="./images/doctor-placeholder.png" alt="Demo Doctor" class="Image">
+                                </div>
+                                <div class="Item__title"><?php echo $row['doctorName'];?></div>
+                                <div class="Item__specialty">Specialities: <?php echo $row['specilization'];?>
+                                </div>
+                                <div class="Item__practice">Practice Days : <?php echo $row['practicedays'];?></div>
+                                <div class="Item__practice">Practice Time : <?php echo $row['practicetime'];?></div>
+                                <div class="Item__branch"><?php echo $row['address'];?></div>
                             </div>
                             <?php 
                                     }
