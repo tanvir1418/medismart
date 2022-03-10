@@ -4,27 +4,12 @@
 	
 	include('include/config.php');
 	include('include/checklogin.php');
-
-	if(isset($_POST['submit'])){
-		$docspecialization=$_POST['Doctorspecialization'];
-		$docname=$_POST['docname'];
-		$docdegree=$_POST['docdegree'];
-		$docaddress=$_POST['clinicaddress'];
-		$docfees=$_POST['docfees'];
-		$doccontactno=$_POST['doccontact'];
-		$docemail=$_POST['docemail'];
-		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docdegree='$docdegree',address='$docaddress',docFees='$docfees',contactno='$doccontactno' where id='".$_SESSION['id']."'");
-		
-		if($sql){
-			echo "<script>alert('Doctor Details updated Successfully');</script>";
-		}
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Doctor | Edit Doctor Details</title>
+    <title>Doctor | Profile</title>
 
     <link
         href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
@@ -57,14 +42,14 @@
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Doctor | Edit Doctor Details</h1>
+                                <h1 class="mainTitle">Doctor | Profile</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
                                     <span>Doctor</span>
                                 </li>
                                 <li class="active">
-                                    <span>Edit Doctor Details</span>
+                                    <span>Profile</span>
                                 </li>
                             </ol>
                         </div>
@@ -78,9 +63,6 @@
                                 <div class="row margin-top-30">
                                     <div class="col-lg-8 col-md-12">
                                         <div class="panel panel-white">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title">Edit Doctor</h5>
-                                            </div>
                                             <div class="panel-body">
                                                 <?php 
                                                 $sql=mysqli_query($con,"select * from doctors where docEmail='".$_SESSION['dlogin']."'");
@@ -96,27 +78,14 @@
                                                 <hr />
                                                 <form role="form" name="adddoc" method="post"
                                                     onSubmit="return valid();">
+
                                                     <div class="form-group">
-                                                        <label for="DoctorSpecialization">
+                                                        <label for="specilization">
                                                             Doctor Specialization
                                                         </label>
-                                                        <select name="Doctorspecialization" class="form-control"
-                                                            required="required">
-                                                            <option
-                                                                value="<?php echo htmlentities($data['specilization']);?>">
-                                                                <?php echo htmlentities($data['specilization']);?>
-                                                            </option>
-                                                            <?php 
-                                                              $ret=mysqli_query($con,"select * from doctorspecilization");
-                                                              while($row=mysqli_fetch_array($ret)){
-                                                            ?>
-                                                            <option
-                                                                value="<?php echo htmlentities($row['specilization']);?>">
-                                                                <?php echo htmlentities($row['specilization']);?>
-                                                            </option>
-                                                            <?php } ?>
-
-                                                        </select>
+                                                        <input type="text" name="specilization" class="form-control"
+                                                            readonly="readonly"
+                                                            value="<?php echo htmlentities($data['specilization']);?>">
                                                     </div>
 
                                                     <div class="form-group">
@@ -124,6 +93,7 @@
                                                             Doctor Name
                                                         </label>
                                                         <input type="text" name="docname" class="form-control"
+                                                            readonly="readonly"
                                                             value="<?php echo htmlentities($data['doctorName']);?>">
                                                     </div>
 
@@ -132,6 +102,7 @@
                                                             Doctor Degree
                                                         </label>
                                                         <input type="text" name="docdegree" class="form-control"
+                                                            readonly="readonly"
                                                             value="<?php echo htmlentities($data['docdegree']);?>">
                                                     </div>
 
@@ -140,15 +111,15 @@
                                                         <label for="address">
                                                             Doctor Clinic Address
                                                         </label>
-                                                        <textarea name="clinicaddress"
-                                                            class="form-control"><?php echo htmlentities($data['address']);?></textarea>
+                                                        <textarea name="clinicaddress" class="form-control"
+                                                            readonly><?php echo htmlentities($data['address']);?></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="fess">
                                                             Doctor Consultancy Fees
                                                         </label>
                                                         <input type="text" name="docfees" class="form-control"
-                                                            required="required"
+                                                            readonly="readonly"
                                                             value="<?php echo htmlentities($data['docFees']);?>">
                                                     </div>
 
@@ -157,7 +128,7 @@
                                                             Doctor Contact no
                                                         </label>
                                                         <input type="text" name="doccontact" class="form-control"
-                                                            required="required"
+                                                            readonly="readonly"
                                                             value="<?php echo htmlentities($data['contactno']);?>">
                                                     </div>
 
@@ -170,9 +141,6 @@
                                                             value="<?php echo htmlentities($data['docEmail']);?>">
                                                     </div>
                                                     <?php } ?>
-                                                    <button type="submit" name="submit" class="btn btn-o btn-primary">
-                                                        Update
-                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
