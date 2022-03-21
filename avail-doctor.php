@@ -107,7 +107,8 @@
 
                             <div class="Item">
                                 <div class="ImageContainer">
-                                    <img src="./images/doctor-placeholder.png" alt="Demo Doctor" class="Image">
+                                    <img src="./images/doctor-<?php echo ($row['docgender'] == 'Female') ? 'female.png' : 'male.png'; ?>"
+                                        alt="Demo Doctor" class="Image">
                                 </div>
                                 <div class="Item__title"><?php echo $row['doctorName'];?></div>
                                 <div class="Item__specialty">Specialities: <?php echo $row['specilization'];?>

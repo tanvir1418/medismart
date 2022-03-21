@@ -11,6 +11,7 @@
 	if(isset($_POST['submit'])){
 		$docspecialization=$_POST['Doctorspecialization'];
 		$docname=$_POST['docname'];
+        $docgender=$_POST['docgender'];
 		$docdegree=$_POST['docdegree'];
 		$docaddress=$_POST['clinicaddress'];
 		$docfees=$_POST['docfees'];
@@ -18,7 +19,7 @@
         $practicetime=$_POST['practicetime'];
 		$doccontactno=$_POST['doccontact'];
 		$docemail=$_POST['docemail'];
-		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$$practicetime',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
+		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docgender='$docgender',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$practicetime',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
 		if($sql){
 			$msg="Doctor Details updated Successfully";
 		}
@@ -150,6 +151,28 @@
                                                         </label>
                                                         <input type="text" name="docname" class="form-control"
                                                             value="<?php echo htmlentities($data['doctorName']);?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="docgender">
+                                                            Doctor Gender
+                                                        </label>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input name="selectgender" type="radio" value="Male"
+                                                                    class="docgender__radio" />
+                                                                Male
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input name="selectgender" type="radio" value="Female"
+                                                                    class="docgender__radio" />
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                        <input name="docgender" type="text"
+                                                            value="<?php echo htmlentities($data['docgender']);?>"
+                                                            id="docgender__input" class="form-control"
+                                                            required="true" />
                                                     </div>
 
                                                     <div class="form-group">
@@ -331,6 +354,12 @@
 
             //init
             // $("input[type=radio].docdays__radio:checked").click();
+
+            // checkbox select
+            $("input[type=radio].docgender__radio").click(function() {
+                $("#docgender__input").val(this.value);
+            });
+
         });
         </script>
         <!-- end: JavaScript Event Handlers for this page -->

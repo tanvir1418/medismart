@@ -8,6 +8,7 @@
     if(isset($_POST['submit'])){	
         $docspecialization=$_POST['Doctorspecialization'];
         $docname=$_POST['docname'];
+        $docgender=$_POST['docgender'];
         $docdegree=$_POST['docdegree'];
         $docaddress=$_POST['clinicaddress'];
         $docfees=$_POST['docfees'];
@@ -17,7 +18,7 @@
         $docemail=$_POST['docemail'];
         $password=md5($_POST['npass']);
 
-        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,docdegree,address,docFees,practicedays,practicetime,contactno,docEmail,password) values('$docspecialization','$docname','$docdegree','$docaddress','$docfees','$practicedays','$practicetime','$doccontactno','$docemail','$password')");
+        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,docgender,docdegree,address,docFees,practicedays,practicetime,contactno,docEmail,password) values('$docspecialization','$docname','$docgender','$docdegree','$docaddress','$docfees','$practicedays','$practicetime','$doccontactno','$docemail','$password')");
 
         if($sql){
             echo "<script>alert('Doctor info added Successfully');</script>";
@@ -160,7 +161,26 @@
                                                         <input type="text" name="docname" class="form-control"
                                                             placeholder="Enter Doctor Name" required="true">
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <label for="docgender">
+                                                            Doctor Gender
+                                                        </label>
+                                                        <div class="selector">
+                                                            <label>
+                                                                <input type="radio" name="selectgender" value="Male"
+                                                                    class="docgender__radio" checked="checked" />
+                                                                Male
+                                                            </label> &nbsp;&nbsp;
+                                                            <label>
+                                                                <input name="selectgender" type="radio" value="Female"
+                                                                    class="docgender__radio" />
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                        <input name="docgender" type="hidden" value=""
+                                                            id="docgender__input" class="form-control"
+                                                            placeholder="Enter Doctor Gender" required="true" />
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="doctordegree">
                                                             Doctor Degree
@@ -352,6 +372,14 @@
 
         //init
         $("input[type=radio].docdays__radio:checked").click();
+
+        // checkbox select
+        $("input[type=radio].docgender__radio").click(function() {
+            $("#docgender__input").val(this.value);
+        });
+
+        //init
+        $("input[type=radio].docgender__radio:checked").click();
     });
     </script>
     <!-- end: JavaScript Event Handlers for this page -->
