@@ -73,14 +73,26 @@
                                                     $sql=mysqli_query($con,"select * from users where id='".$_SESSION['id']."'");
                                                     while($data=mysqli_fetch_array($sql)){
                                             ?>
-                                                <h4><?php echo htmlentities($data['fullName']);?>'s Profile</h4>
-                                                <p><b>Profile Reg. Date:</b><?php echo htmlentities($data['regDate']);?>
-                                                </p>
-                                                <?php if($data['updationDate']){?>
-                                                <p><b>Profile Last Updation
-                                                        Date:</b><?php echo htmlentities($data['updationDate']);?></p>
-                                                <?php } ?>
-                                                <hr />
+                                                <div class="profile-container" style="display: flex;">
+                                                    <div class="profile-image">
+                                                        <?php $pic = ($data["profile_pic"] != "" ) ? $data["profile_pic"] : "patient.png" ?>
+                                                        <a href="profile_pics/<?php echo $pic ?>" target="_blank"><img
+                                                                src="profile_pics/<?php echo $pic ?>" alt="" width="150"
+                                                                height="150" class="thumbnail"></a>
+                                                    </div>
+                                                    <div class="profile-info" style="padding: 20px;">
+                                                        <h4><?php echo htmlentities($data['fullName']);?>'s Profile</h4>
+                                                        <p><b>Reg.
+                                                                Date: </b><?php echo htmlentities($data['regDate']);?>
+                                                        </p>
+                                                        <?php if($data['updationDate']){?>
+                                                        <p><b>Last Updation:
+                                                            </b><?php echo htmlentities($data['updationDate']);?>
+                                                        </p>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+
                                                 <form>
                                                     <div class="form-group">
                                                         <label for="fname">

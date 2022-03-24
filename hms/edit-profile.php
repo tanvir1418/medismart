@@ -11,7 +11,20 @@
 		$city=$_POST['city'];
 		$gender=$_POST['gender'];
 
-		$sql=mysqli_query($con,"Update users set fullName='$fname',address='$address',city='$city',gender='$gender' where id='".$_SESSION['id']."'");
+        $filename = "";
+        $error = FALSE;
+
+        if (is_uploaded_file($_FILES["profile_pic"]["tmp_name"])) {
+            $filename = time() . '_' . $_FILES["profile_pic"]["name"];
+            $filepath = 'profile_pics/' . $filename;
+            if (!move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $filepath)) {
+            $error = TRUE;
+            }
+        } else {
+            $filename = $_POST['old_pic'];
+        }
+
+		$sql=mysqli_query($con,"Update users set fullName='$fname',profile_pic='$filename',address='$address',city='$city',gender='$gender' where id='".$_SESSION['id']."'");
 
 		if($sql){
 			$msg="Your Profile updated Successfully";
@@ -97,8 +110,31 @@
                                                     </b><?php echo htmlentities($data['updationDate']);?></p>
                                                 <?php } ?>
                                                 <hr />
-                                                <form role="form" name="edit" method="post">
+                                                <form role="form" name="edit" method="post"
+                                                    enctype="multipart/form-data">
 
+                                                    <div class="form-group">
+                                                        <div class="">
+                                                            <?php $pic = ($data["profile_pic"] != "" ) ? $data["profile_pic"] : "patient.png" ?>
+                                                            <a href="profile_pics/<?php echo $pic ?>"
+                                                                target="_blank"><img
+                                                                    src="profile_pics/<?php echo $pic ?>" alt=""
+                                                                    width="150" height="150" class="thumbnail"></a>
+                                                        </div>
+                                                        <input type="hidden" name="old_pic"
+                                                            value="<?php echo $data["profile_pic"] ?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="profile_pic">Profile
+                                                            picture:</label>
+                                                        <div class="profile-input">
+                                                            <input type="file" id="profile_pic"
+                                                                class="form-control file" name="profile_pic">
+                                                            <span class="help-block">Must me jpg, jpeg, png, gif, bmp
+                                                                image only.</span>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <label for="fname">
