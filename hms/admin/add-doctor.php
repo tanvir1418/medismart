@@ -18,7 +18,18 @@
         $docemail=$_POST['docemail'];
         $password=md5($_POST['npass']);
 
-        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,docgender,docdegree,address,docFees,practicedays,practicetime,contactno,docEmail,password) values('$docspecialization','$docname','$docgender','$docdegree','$docaddress','$docfees','$practicedays','$practicetime','$doccontactno','$docemail','$password')");
+        $filename = "";
+        $error = FALSE;
+
+        if (is_uploaded_file($_FILES["profile_pic"]["tmp_name"])) {
+            $filename = time() . '_' . $_FILES["profile_pic"]["name"];
+            $filepath = 'profile_pics/' . $filename;
+            if (!move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $filepath)) {
+            $error = TRUE;
+            }
+        }
+
+        $sql=mysqli_query($con,"insert into doctors(specilization,doctorName,profile_pic,docgender,docdegree,address,docFees,practicedays,practicetime,contactno,docEmail,password) values('$docspecialization','$docname','$filename','$docgender','$docdegree','$docaddress','$docfees','$practicedays','$practicetime','$doccontactno','$docemail','$password')");
 
         if($sql){
             echo "<script>alert('Doctor info added Successfully');</script>";
@@ -133,7 +144,7 @@
                                             <div class="panel-body">
 
                                                 <form role="form" name="adddoc" method="post"
-                                                    onSubmit="return valid();">
+                                                    enctype="multipart/form-data" onSubmit="return valid();">
                                                     <div class="form-group">
                                                         <label for="DoctorSpecialization">
                                                             Doctor Specialization
@@ -161,6 +172,18 @@
                                                         <input type="text" name="docname" class="form-control"
                                                             placeholder="Enter Doctor Name" required="true">
                                                     </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="profile_pic">Profile
+                                                            picture:</label>
+                                                        <div class="profile-input">
+                                                            <input type="file" id="profile_pic"
+                                                                class="form-control file" name="profile_pic">
+                                                            <span class="help-block">Must me jpg, jpeg, png, gif, bmp
+                                                                image only.</span>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group">
                                                         <label for="docgender">
                                                             Doctor Gender

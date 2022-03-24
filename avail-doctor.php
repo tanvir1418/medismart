@@ -107,7 +107,7 @@
 
                             <div class="Item">
                                 <div class="ImageContainer">
-                                    <img src="./images/doctor-<?php echo ($row['docgender'] == 'Female') ? 'female.png' : 'male.png'; ?>"
+                                    <img src="./hms/admin/profile_pics/<?php echo ($row['profile_pic'] != '') ? $row['profile_pic'] : 'doctor.png'; ?>"
                                         alt="Demo Doctor" class="Image">
                                 </div>
                                 <div class="Item__title"><?php echo $row['doctorName'];?></div>

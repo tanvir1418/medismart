@@ -15,7 +15,21 @@
         $practicetime=$_POST['practicetime'];
 		$doccontactno=$_POST['doccontact'];
 		$docemail=$_POST['docemail'];
-		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$$practicetime',contactno='$doccontactno' where id='".$_SESSION['id']."'");
+
+        $filename = "";
+        $error = FALSE;
+
+        if (is_uploaded_file($_FILES["profile_pic"]["tmp_name"])) {
+            $filename = time() . '_' . $_FILES["profile_pic"]["name"];
+            $filepath = '../admin/profile_pics/' . $filename;
+            if (!move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $filepath)) {
+            $error = TRUE;
+            }
+        } else {
+            $filename = $_POST['old_pic'];
+        }
+
+		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',profile_pic='$filename',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$$practicetime',contactno='$doccontactno' where id='".$_SESSION['id']."'");
 		
 		if($sql){
 			echo "<script>alert('Doctor Details updated Successfully');</script>";
@@ -112,7 +126,7 @@
                                                 <?php } ?>
                                                 <hr />
                                                 <form role="form" name="adddoc" method="post"
-                                                    onSubmit="return valid();">
+                                                    enctype="multipart/form-data" onSubmit="return valid();">
                                                     <div class="form-group">
                                                         <label for="DoctorSpecialization">
                                                             Doctor Specialization
@@ -142,6 +156,30 @@
                                                         </label>
                                                         <input type="text" name="docname" class="form-control"
                                                             value="<?php echo htmlentities($data['doctorName']);?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="">
+                                                            <?php $pic = ($data["profile_pic"] != "" ) ? $data["profile_pic"] : "doctor.png" ?>
+                                                            <a href="../admin/profile_pics/<?php echo $pic ?>"
+                                                                target="_blank"><img
+                                                                    src="../admin/profile_pics/<?php echo $pic ?>"
+                                                                    alt="" width="150" height="150"
+                                                                    class="thumbnail"></a>
+                                                        </div>
+                                                        <input type="hidden" name="old_pic"
+                                                            value="<?php echo $data["profile_pic"] ?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="profile_pic">Profile
+                                                            picture:</label>
+                                                        <div class="profile-input">
+                                                            <input type="file" id="profile_pic"
+                                                                class="form-control file" name="profile_pic">
+                                                            <span class="help-block">Must me jpg, jpeg, png, gif, bmp
+                                                                image only.</span>
+                                                        </div>
                                                     </div>
 
                                                     <div class="form-group">
@@ -187,7 +225,8 @@
                                                         </div>
                                                         <input type="text" name="practicedays" class="form-control"
                                                             id="docdays__input" required="required"
-                                                            value="<?php echo htmlentities($data['practicedays']);?>">
+                                                            value="<?php echo htmlentities($data['practicedays']);?>"
+                                                            readonly>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="practicetime">
@@ -212,7 +251,8 @@
                                                         </div>
                                                         <input type="text" name="practicetime" class="form-control"
                                                             required="required" id="doctime__input"
-                                                            value="<?php echo htmlentities($data['practicetime']);?>">
+                                                            value="<?php echo htmlentities($data['practicetime']);?>"
+                                                            readonly>
                                                     </div>
 
                                                     <div class="form-group">

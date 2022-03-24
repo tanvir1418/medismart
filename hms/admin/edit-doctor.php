@@ -19,7 +19,22 @@
         $practicetime=$_POST['practicetime'];
 		$doccontactno=$_POST['doccontact'];
 		$docemail=$_POST['docemail'];
-		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',docgender='$docgender',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$practicetime',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
+
+        $filename = "";
+        $error = FALSE;
+
+        if (is_uploaded_file($_FILES["profile_pic"]["tmp_name"])) {
+            $filename = time() . '_' . $_FILES["profile_pic"]["name"];
+            $filepath = 'profile_pics/' . $filename;
+            if (!move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $filepath)) {
+            $error = TRUE;
+            }
+        } else {
+            $filename = $_POST['old_pic'];
+        }
+
+
+		$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',profile_pic='$filename',docgender='$docgender',docdegree='$docdegree',address='$docaddress',docFees='$docfees',practicedays='$practicedays',practicetime='$practicetime',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
 		if($sql){
 			$msg="Doctor Details updated Successfully";
 		}
@@ -121,7 +136,7 @@
                                                 <?php } ?>
                                                 <hr />
                                                 <form role="form" name="adddoc" method="post"
-                                                    onSubmit="return valid();">
+                                                    enctype="multipart/form-data" onSubmit="return valid();">
                                                     <div class="form-group">
                                                         <label for="DoctorSpecialization">
                                                             Doctor Specialization
@@ -151,6 +166,29 @@
                                                         </label>
                                                         <input type="text" name="docname" class="form-control"
                                                             value="<?php echo htmlentities($data['doctorName']);?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="">
+                                                            <?php $pic = ($data["profile_pic"] != "" ) ? $data["profile_pic"] : "doctor.png" ?>
+                                                            <a href="profile_pics/<?php echo $pic ?>"
+                                                                target="_blank"><img
+                                                                    src="profile_pics/<?php echo $pic ?>" alt=""
+                                                                    width="200" height="200" class="thumbnail"></a>
+                                                        </div>
+                                                        <input type="hidden" name="old_pic"
+                                                            value="<?php echo $data["profile_pic"] ?>">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="profile_pic">Profile
+                                                            picture:</label>
+                                                        <div class="profile-input">
+                                                            <input type="file" id="profile_pic"
+                                                                class="form-control file" name="profile_pic">
+                                                            <span class="help-block">Must me jpg, jpeg, png, gif, bmp
+                                                                image only.</span>
+                                                        </div>
                                                     </div>
 
                                                     <div class="form-group">
