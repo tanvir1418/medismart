@@ -294,10 +294,7 @@
             <!-- start: FOOTER -->
             <?php include('include/footer.php');?>
             <!-- end: FOOTER -->
-            <!-- start: SETTINGS -->
-            <?php include('include/setting.php');?>
-            <>
-                <!-- end: SETTINGS -->
+
         </div>
         <!-- start: MAIN JAVASCRIPTS -->
         <script src="vendor/jquery/jquery.min.js"></script>
