@@ -259,3 +259,22 @@ li:last-child .item-content .item-inner {
 }
 
 /* #364150 !important */
+
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.contact .section .span_cus_1_of_3 {
+  margin-top: 60px;
+}
+.contact .section .span_cus_2_of_3 {
+  margin-top: 80px;
+}
+
+.contact .section .span_cus_1_of_3 #sidebar {
+  height: 100vh;
+  position: fixed;
+  width: 300px;
+}
