@@ -23,7 +23,7 @@
 }
 .item-content .item-media {
   display: table-cell;
-  padding: 10px 15px 10px 15px;
+  padding: 5px 20px;
 }
 .item-content .item-inner {
   align-items: center;
@@ -31,7 +31,7 @@
   border-bottom-style: solid;
   border-bottom-color: #c8c7cc;
   display: table-cell;
-  padding: 10px 15px 10px 0;
+  padding: 5px 15px 5px 0;
   width: 100%;
 }
 .item-content .item-inner {
@@ -61,7 +61,7 @@ li:last-child .item-content .item-inner {
 }
 #sidebar nav .navbar-title {
   color: white !important;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   padding: 4px 0;
 }
@@ -167,7 +167,7 @@ li:last-child .item-content .item-inner {
 }
 .item-inner .title {
   color: white !important;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .Items {
@@ -188,7 +188,7 @@ li:last-child .item-content .item-inner {
   text-align: center;
   transition: box-shadow, 0.4s, ease-in-out;
   border-radius: 3px;
-  height: 500px;
+  height: 550px;
   background-color: #ffffff;
   color: #5b5b60;
   border: 1px solid rgba(0, 0, 0, 0.07);
@@ -260,7 +260,7 @@ li:last-child .item-content .item-inner {
 
 /* #364150 !important */
 
-.header {
+/* .header {
   position: fixed;
   width: 100%;
   z-index: 10;
@@ -304,5 +304,68 @@ li:last-child .item-content .item-inner {
 @media (max-width: 1100px) {
   .contact .section .span_cus_1_of_3 #sidebar {
     width: 210px;
+  }
+} */
+
+.contact .section .span_cus_1_of_3 #sidebar {
+  height: 100vh;
+}
+
+@media (max-width: 1100px) {
+  .navbar-title {
+    font-size: 12px !important;
+  }
+  .Items {
+    justify-content: space-evenly;
+    width: 90%;
+  }
+  .item-content .item-media {
+    display: table-cell;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .wrap {
+    width: 95%;
+  }
+  .Items {
+    justify-content: space-evenly;
+    width: 97%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact .section .span_cus_1_of_3 {
+    width: 35%;
+  }
+  .contact .section .span_cus_2_of_3 {
+    width: 65%;
+  }
+  .header {
+    height: 150px;
+    background: whitesmoke;
+  }
+  .wrap {
+    height: 100%;
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .Item {
+    width: 85%;
+  }
+  .top-nav ul li a {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 530px) {
+  .contact .section .span_cus_1_of_3 {
+    display: none;
+  }
+  .contact .section .span_cus_2_of_3 {
+    width: 100%;
   }
 }
